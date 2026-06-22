@@ -1,0 +1,37 @@
+<div class="min-h-[80vh] flex items-center justify-center px-4">
+  
+  <div *ngIf="isLoading" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex flex-col items-center justify-center space-y-4">
+    <div class="w-12 h-12 border-4 border-emerald-400/20 border-t-emerald-400 rounded-full animate-spin"></div>
+    <p class="text-emerald-400 font-medium tracking-wide animate-pulse">Authenticating User Profile...</p>
+  </div>
+
+  <div class="w-full max-w-md bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-xl">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-extrabold text-white tracking-tight">💼 AssetManager</h2>
+      <p class="text-slate-400 mt-2 text-sm">Please sign in to manage system infrastructure.</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="mb-5 bg-rose-500/10 border border-rose-500/30 text-rose-400 rounded-lg p-3 text-sm text-center">
+      ⚠️ {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="mb-4">
+        <label class="block text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Username / Login ID</label>
+        <input type="text" name="username" [(ngModel)]="credentials.username" placeholder="e.g. admin" 
+               class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-emerald-500" required>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Password</label>
+        <input type="password" name="password" [(ngModel)]="credentials.password" placeholder="••••••••" 
+               class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-emerald-500" required>
+      </div>
+
+      <button type="submit" [disabled]="isLoading"
+              class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors shadow-md flex items-center justify-center">
+        Secure Access Entry
+      </button>
+    </form>
+  </div>
+</div>
