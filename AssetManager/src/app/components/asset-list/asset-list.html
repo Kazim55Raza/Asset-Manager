@@ -33,10 +33,15 @@
         <label class="block text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Assign To Employee</label>
         <select name="employeeId" [(ngModel)]="currentAsset.employeeId" 
                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-emerald-500">
-          <option [ngValue]="null">-- Unassigned Reserve --</option>
-          <option *ngFor="let emp of employeesList$ | async" [value]="emp.Id || emp.id" class="bg-slate-900 text-slate-200" >
-            {{ emp.Name || emp.name }}
-          </option>
+          <option [ngValue]="null" style="background-color: #0f172a; color: #e2e8f0;">
+      -- Unassigned Reserve --
+    </option>
+    
+    <option *ngFor="let emp of employeesList$ | async" 
+            [value]="emp.Id ?? emp.id" 
+            style="background-color: #0f172a !important; color: #f8fafc !important;">
+      {{ emp.Name ?? emp.name ?? emp.fullName }}
+    </option>
         </select>
       </div>
 
