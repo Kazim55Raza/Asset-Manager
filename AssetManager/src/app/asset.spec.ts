@@ -18,4 +18,15 @@ export class AssetService {
   getSummary(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/summary`);
   }
+  addAsset(asset: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, asset);
+  }
+
+  updateAsset(id: number, asset: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, asset);
+  }
+
+  deleteAsset(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 }
