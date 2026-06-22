@@ -1,0 +1,19 @@
+# @AssetManager.API_HostAddress = http://localhost:5201
+
+# GET {{AssetManager.API_HostAddress}}/weatherforecast/
+# Accept: application/json
+
+# ###
+@HostAddress = http://localhost:5201
+
+### Test Weather Forecast
+GET {{HostAddress}}/weatherforecast/
+Accept: application/json
+
+### Test Get All Assets
+GET {{HostAddress}}/api/assets
+Accept: application/json
+
+### Test Get All Employees
+GET {{HostAddress}}/api/employees
+Accept: application/json
