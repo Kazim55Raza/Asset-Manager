@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AssetManager.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c70885732c53492fa0fdc6027adf29ea85637deb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5883199d2ba32e8d84c2bea3c9436f5fe8aa490c")]
 [assembly: System.Reflection.AssemblyProductAttribute("AssetManager.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AssetManager.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

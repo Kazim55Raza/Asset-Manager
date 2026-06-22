@@ -159,3 +159,4 @@ C:\Users\cybersoft\Desktop\SQL Project\AssetManager.API\obj\Debug\net10.0\refint
 C:\Users\cybersoft\Desktop\SQL Project\AssetManager.API\obj\Debug\net10.0\AssetManager.API.pdb
 C:\Users\cybersoft\Desktop\SQL Project\AssetManager.API\obj\Debug\net10.0\AssetManager.API.genruntimeconfig.cache
 C:\Users\cybersoft\Desktop\SQL Project\AssetManager.API\obj\Debug\net10.0\ref\AssetManager.API.dll
+C:\Users\cybersoft\Desktop\SQL Project\AssetManager.API\obj\Debug\net10.0\AssetManager.API.sourcelink.json
