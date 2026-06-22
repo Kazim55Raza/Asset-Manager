@@ -34,7 +34,7 @@
         <select name="employeeId" [(ngModel)]="currentAsset.employeeId" 
                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-emerald-500">
           <option [ngValue]="null">-- Unassigned Reserve --</option>
-          <option *ngFor="let emp of employeesList$ | async" [value]="emp.Id || emp.id">
+          <option *ngFor="let emp of employeesList$ | async" [value]="emp.Id || emp.id" class=" text-white ">
             {{ emp.Name || emp.name }}
           </option>
         </select>
