@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeService {
   // 🔗 Points directly to your C# Controller route!
-  private apiUrl = 'http://localhost:5201/api/employees'; 
+  private apiUrl = 'https://asset-manager-production-fe86.up.railway.app/api/employees'; 
 
   constructor(private http: HttpClient) { }
 

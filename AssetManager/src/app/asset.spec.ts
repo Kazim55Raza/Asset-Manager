@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AssetService {
   // 🔗 Points directly to your C# Assets Controller route!
-  private apiUrl = 'http://localhost:5201/api/assets'; 
+  private apiUrl = 'https://asset-manager-production-fe86.up.railway.app/api/assets'; 
 
   constructor(private http: HttpClient) { }
 
