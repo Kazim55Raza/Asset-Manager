@@ -1,24 +1,30 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive], // 👈 This activates your app.html links!
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
+  showNavbar = false;
 
-  constructor(private router: Router) {}
-
-  // Checks if user token is active
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+  constructor(private router: Router) {
+    // 🔄 Listen to router changes to dynamically toggle header presence
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      // Hide the navbar strictly on the login route screen
+      this.showNavbar = !event.urlAfterRedirects.includes('/login');
+    });
   }
 
   logout() {
-    localStorage.removeItem('token'); // Kill session
-    this.router.navigate(['/login']); // Send back to login gate
+    localStorage.removeItem('token'); // Clear auth token session
+    this.router.navigate(['/login']); // Redirect straight back to login page
   }
-} // 👈 Clean and empty because sub-components handle the data now!
+}
