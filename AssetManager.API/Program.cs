@@ -46,7 +46,7 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = "swagger"; // Exposes the UI page at /swagger
 });
 
-app.UseCors("NetlifyPolicy");
+app.UseCors("FrontendCorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
