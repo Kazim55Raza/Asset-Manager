@@ -2,12 +2,12 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../../employee.spec';
 import { Observable, BehaviorSubject, switchMap, map, catchError, of } from 'rxjs';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms'; // 👈 Form Imports
+import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormsModule } from '@angular/forms'; // 👈 Form Imports
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css'
 })
