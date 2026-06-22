@@ -30,20 +30,22 @@
       </div>
 
       <div class="mb-6">
-        <label class="block text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Assign To Employee</label>
-        <select name="employeeId" [(ngModel)]="currentAsset.employeeId" 
-                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-emerald-500">
-          <option [ngValue]="null" style="background-color: #0f172a; color: #e2e8f0;">
+  <label class="block text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Assign To Employee</label>
+  <select name="employeeId" [(ngModel)]="currentAsset.employeeId" 
+          class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-emerald-500">
+    
+    <option [ngValue]="null" style="background-color: #0f172a; color: #e2e8f0;">
       -- Unassigned Reserve --
     </option>
     
     <option *ngFor="let emp of employeesList$ | async" 
-            [value]="emp.Id ?? emp.id" 
-            style="background-color: #0f172a !important; color: #f8fafc !important;">
-      {{ emp.Name ?? emp.name ?? emp.fullName }}
+            [value]="emp.Id" 
+            style="background-color: #0f172a; color: #f8fafc;">
+      {{ emp.Name }}
     </option>
-        </select>
-      </div>
+
+  </select>
+</div>
 
       <div class="flex space-x-3">
         <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-sm">
