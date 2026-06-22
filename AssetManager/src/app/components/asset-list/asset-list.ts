@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AssetService } from '../../asset.spec';
 import { EmployeeService } from '../../employee.spec';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import * as XLSX from 'xlsx'; // 👈 1. Import SheetJS at the top
 
 @Component({
   selector: 'app-asset-list',
@@ -83,4 +84,34 @@ export class AssetListComponent implements OnInit {
     this.isEditing = false;
     this.currentAsset = { id: 0, name: '', serialNumber: '', price: 0, employeeId: null };
   }
+  // 🚀 2. Add this Excel Export Method
+  exportToExcel(): void {
+    // Read the current asset data array from the observable stream safely
+    this.assetsList$.pipe(take(1)).subscribe({
+      next: (assets) => {
+        if (!assets || assets.length === 0) {
+          alert('No assets available to export.');
+          return;
+        }
+
+        // 📊 Map properties into clean, professional excel headers
+        const formattedData = assets.map(asset => ({
+          'Asset ID': `#${asset.Id || asset.id}`,
+          'Hardware Name': asset.Name || asset.name,
+          'Serial Number': asset.SerialNumber || asset.serialNumber,
+          'Asset Price (USD)': asset.Price || asset.price || 0,
+          'Assigned Employee': asset.AssignedToEmployee || asset.assignedToEmployee || 'Unassigned Reserve'
+        }));
+
+        // 🗂️ Generate Sheet and Workbook
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(formattedData);
+        const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Corporate Assets');
+
+        // 💾 Download File
+        XLSX.writeFile(workbook, 'AssetManager_Inventory_Report.xlsx');
+      }
+    });
+  }
+
 }
