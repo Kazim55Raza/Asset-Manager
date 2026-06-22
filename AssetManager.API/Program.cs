@@ -24,7 +24,7 @@ builder.Services.AddCors(options=>
 {
     options.AddPolicy("FrontendCorsPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200") // Update with your frontend URL
+        policy.WithOrigins("https://kazim-assetmanager.netlify.app") // Update with your frontend URL
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -46,7 +46,7 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = "swagger"; // Exposes the UI page at /swagger
 });
 
-app.UseCors("FrontendCorsPolicy");
+app.UseCors("NetlifyPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
