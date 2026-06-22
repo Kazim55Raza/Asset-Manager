@@ -16,6 +16,9 @@ import * as XLSX from 'xlsx'; // 👈 1. Import SheetJS at the top
 export class AssetListComponent implements OnInit {
   assetsList$!: Observable<any[]>;
   employeesList$!: Observable<any[]>;
+  // 🔑 1. Add the search query property
+  searchQuery: string = '';
+
   currentAsset: any = {
     id: 0,
     name: '',
@@ -111,6 +114,22 @@ export class AssetListComponent implements OnInit {
         // 💾 Download File
         XLSX.writeFile(workbook, 'AssetManager_Inventory_Report.xlsx');
       }
+    });
+  }
+
+  // 🔑 2. Add a helper method to filter assets in the UI template
+  getFilteredAssets(assets: any[] | null): any[] {
+    if (!assets) return [];
+    if (!this.searchQuery.trim()) return assets;
+
+    const query = this.searchQuery.toLowerCase().trim();
+
+    return assets.filter(asset => {
+      const name = (asset.Name || asset.name || '').toLowerCase();
+      const serial = (asset.SerialNumber || asset.serialNumber || '').toLowerCase();
+      const employee = (asset.AssignedToEmployee || asset.assignedToEmployee || 'unassigned reserve').toLowerCase();
+
+      return name.includes(query) || serial.includes(query) || employee.includes(query);
     });
   }
 
