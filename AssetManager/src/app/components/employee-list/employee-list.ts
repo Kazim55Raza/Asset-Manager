@@ -16,6 +16,7 @@ export class EmployeeListComponent implements OnInit {
   private refresh$ = new BehaviorSubject<void>(undefined);
 toastMessage: string | null = null;
 editingEmployeeId: number | null = null;
+searchQuery: string = '';
 
    employeeForm = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -154,4 +155,18 @@ this.employeeService.addEmployee(payload).subscribe({
     
   }
 }
+getFilteredEmployees(employees: any[] | null): any[] {
+    if (!employees) return [];
+    if (!this.searchQuery.trim()) return employees;
+
+    const query = this.searchQuery.toLowerCase().trim();
+
+    return employees.filter(emp => {
+      const name = (emp.FullName || emp.fullName || emp.Name || emp.name || '').toLowerCase();
+      const department = (emp.Department || emp.department || '').toLowerCase();
+
+      return name.includes(query) || department.includes(query);
+    });
+  }
+
 }
