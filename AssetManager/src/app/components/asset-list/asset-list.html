@@ -41,7 +41,7 @@
     <option *ngFor="let emp of employeesList$ | async" 
             [value]="emp.Id" 
             style="background-color: #0f172a; color: #f8fafc;">
-      {{ emp.Name }}
+      {{ emp.FullName }}
     </option>
 
   </select>
